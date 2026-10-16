@@ -1,0 +1,43 @@
+[
+  {
+    "id": "column.Post.body",
+    "label": "Add column body on Post",
+    "summary": "Adds column body on Post",
+    "operationClass": "additive",
+    "target": {
+      "id": "sqlite",
+      "details": {
+        "schema": "main",
+        "objectType": "column",
+        "name": "body",
+        "table": "Post"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"body\" is missing",
+        "sql": "SELECT COUNT(*) = 0 AS \"result\" FROM pragma_table_info(?) WHERE \"name\" = ?",
+        "params": [
+          "Post",
+          "body"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"body\"",
+        "sql": "ALTER TABLE \"Post\" ADD COLUMN \"body\" TEXT DEFAULT '' NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"body\" exists",
+        "sql": "SELECT COUNT(*) > 0 AS \"result\" FROM pragma_table_info(?) WHERE \"name\" = ?",
+        "params": [
+          "Post",
+          "body"
+        ]
+      }
+    ]
+  }
+]

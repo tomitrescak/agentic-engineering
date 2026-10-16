@@ -1,0 +1,10 @@
+// use prisma-8
+// SQLite assigns row IDs to INTEGER PRIMARY KEY columns without a column default.
+
+model Post {
+  id        Int      @id
+  name      String
+  body      String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+}
