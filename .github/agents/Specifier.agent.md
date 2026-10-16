@@ -113,7 +113,4 @@ Formatting rules:
 
 > Please review this specification. If you approve it, I will save the Markdown content above as `docs/specifications/<task-name>.md` (create the folder if needed). I have not written the file.  
   
-Ask user to allow saving the spec file. If so, save it.
-  
-
 If requirements were not fully verified, state the remaining concerns **outside** the code block, before asking for approval. On subsequent user feedback, revise the specification and present the entire updated block again. Never start implementation.

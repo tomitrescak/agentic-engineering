@@ -51,6 +51,9 @@ export default async function Home() {
 					</div>
 
 					<LatestPost />
+					<Link className={styles.loginButton} href="/posts">
+						View all posts
+					</Link>
 				</div>
 			</main>
 		</HydrationBoundary>

@@ -3,6 +3,22 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const postRouter = createTRPCRouter({
+	list: publicProcedure.query(async ({ ctx }) => {
+		const posts = await ctx.db.Post.select(
+			"id",
+			"name",
+			"body",
+			"createdAt",
+			"updatedAt",
+		)
+			.orderBy((post) => post.updatedAt.desc())
+			.all();
+		return posts.map((post) => ({
+			...post,
+			updatedAt: new Date(post.updatedAt),
+		}));
+	}),
+
 	hello: publicProcedure
 		.input(z.object({ text: z.string() }))
 		.query(({ input }) => {
